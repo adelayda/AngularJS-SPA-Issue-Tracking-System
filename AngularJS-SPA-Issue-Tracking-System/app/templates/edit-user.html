@@ -1,0 +1,76 @@
+
+<div ng-include="'templates/navbar.html'"></div>
+
+<div class="container" ng-controller="AuthenticationController">
+    <div class="well bs-component col-lg-5">
+        <form class="form-horizontal" name="registerForm" ng-submit="editUser()">
+            <fieldset>
+                <legend>Edit Profile</legend>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label">Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputName" ng-model="userData.name" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputEmail" ng-model="userData.email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputPhone" ng-model="userData.phoneNumber" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selectTown" class="col-lg-2 control-label">Town</label>
+                    <div class="col-lg-10">
+                        <select class="form-control" id="selectTown" ng-model="userData.townId">
+                            <option value="">Select Town</option>
+                            <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <a href="/#/user/home" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Edit Profile</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="well bs-component col-lg-6 col-lg-offset-1">
+        <form class="form-horizontal" name="registerForm" ng-submit="changePassword()">
+            <fieldset>
+                <legend>Change Password</legend>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-4 control-label">Old Password</label>
+                    <div class="col-lg-8">
+                        <input type="password" class="form-control" id="oldPass" ng-model="passwordData.oldPassword" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-4 control-label">New Password</label>
+                    <div class="col-lg-8">
+                        <input type="password" class="form-control" id="newPass" ng-model="passwordData.newPassword" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-4 control-label">Confirm New Password</label>
+                    <div class="col-lg-8">
+                        <input type="password" class="form-control" id="confirmNewPas" ng-model="passwordData.confirmPassword" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-4">
+                        <a href="/#/user/home" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
