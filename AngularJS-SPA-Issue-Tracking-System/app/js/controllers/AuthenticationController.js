@@ -1,10 +1,7 @@
-/**
- * Created by Adi on 4/12/2016.
- */
 'use strict';
 
 issueTracker.controller('AuthenticationController', function ($scope, $location, $route,
-                                                                authentication, mainData, adServices, adminServices, notifyService) {
+                                                                authentication, mainData, projectServices, adminServices, notifyService) {
 
     var ClearData = function () {
         $scope.loginData = "";
@@ -13,8 +10,9 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
         $scope.passwordData = "";
     };
 
+    // edited Login -> Token
     $scope.login = function () {
-        authentication.Login($scope.loginData,
+        authentication.Token($scope.loginData,
             function(serverData) {
                 notifyService.showInfo("Successful Login!");
                 authentication.SetCredentials(serverData);
@@ -22,7 +20,7 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
                 if(authentication.GetIsAdmin() == "true") {
                     $location.path('/admin/home');
                 } else {
-                    $location.path('/user/home');
+                    $location.path('/dashboard');
                 }
             },
             function (serverError) {
@@ -43,17 +41,17 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
             });
     };
 
-    $scope.editUser = function () {
-        authentication.EditUserProfile($scope.userData,
-            function(serverData) {
-                notifyService.showInfo("Successful Profile Edit!");
-                ClearData();
-                $location.path('/user/home');
-            },
-            function (serverError) {
-                notifyService.showError("Unsuccessful Profile Edit!", serverError)
-            });
-    };
+   // $scope.editUser = function () {
+   //     authentication.EditUserProfile($scope.userData,
+   //         function(serverData) {
+   //             notifyService.showInfo("Successful Profile Edit!");
+   //             ClearData();
+   //             $location.path('/user/home');
+   //         },
+   //         function (serverError) {
+   //             notifyService.showError("Unsuccessful Profile Edit!", serverError)
+   //         });
+   // };
 
     $scope.changePassword = function () {
         authentication.ChangePassword($scope.passwordData,
@@ -82,7 +80,7 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
     };
 
     $scope.clearStatus = function () {
-        adServices.clearParams();
+        projectServices.clearParams();
         $route.reload();
     }
 });
