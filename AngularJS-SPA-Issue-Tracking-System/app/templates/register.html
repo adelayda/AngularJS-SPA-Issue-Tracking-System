@@ -1,6 +1,17 @@
 <!-- Users should be able to edit their profile data
 (name, email, gender, upload profile picture, upload cover picture).
 Show notification for success or error message. -->
+<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
 
 <div ng-include="'templates/navbar.html'"></div>
 
@@ -15,6 +26,12 @@ Show notification for success or error message. -->
                         <input type="text" class="form-control" id="inputName" ng-model="registerData.name" placeholder="Name" required="required">
                     </div>
                 </div>
+                <div class="reg-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" id="inputEmail" ng-model="registerData.email" placeholder="Email" required="required">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-lg-2 control-label">Password</label>
                     <div class="col-lg-10">
@@ -27,20 +44,39 @@ Show notification for success or error message. -->
                         <input type="password" class="form-control" id="confirmPassword" ng-model="registerData.confirmPassword" placeholder="Confirm Password" required="required">
                     </div>
                 </div>
-                <div class="reg-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control" id="inputEmail" ng-model="registerData.email" placeholder="Email" required="required">
-                    </div>
-                </div>
                 <div class="reg-gender">
                     <label for="inputEmail" class="col-lg-2 control-label">Gender</label>
                             <input type="radio" ng-model="registerUser.gender" checked="checked" name="reg-gender" value="1" /> Male
                             <input type="radio" ng-model="registerUser.gender" name="reg-gender" value="2" /> Female
                             <input type="radio" ng-model="registerUser.gender" name="reg-gender" value="0" /> Other
-
+                </div>
+                <div class="col-lg-4">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-preview thumbnail" id="userImageData" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-info btn-file">
+                                <span class="fileinput-new">Select image</span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" class="form-control" id="userImage" name="userImage">
+                            </span>
+                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-preview thumbnail" id="coverImageData" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-info btn-file">
+                                <span class="fileinput-new">Select image</span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" class="form-control" id="coverImage" name="coverImage">
+                            </span>
+                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
                         <a href="/#/" class="btn btn-default">Cancel</a>
