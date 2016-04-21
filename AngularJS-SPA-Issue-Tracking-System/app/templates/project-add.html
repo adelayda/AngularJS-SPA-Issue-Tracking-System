@@ -13,43 +13,37 @@
 
 <div class="container">
     <div class="well bs-component col-lg-6 col-lg-offset-3">
-        <form class="form-horizontal" name="addNewIssueForm" ng-controller="IssuesController" ng-submit="addNewIssue()">
+        <form class="form-horizontal" name="addNewProjectForm" ng-controller="ProjectsController" ng-submit="addNewProject()">
             <fieldset>
-                <legend>Add Issue</legend>
+                <legend>New Project</legend>
                 <div class="form-group">
-                    <label for="inputTitle" class="col-lg-2 control-label">Title</label>
+                    <label for="inputName" class="col-lg-2 control-label">Name</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputTitle" ng-model="issueData.title" placeholder="new issue" required="required">
+                        <input type="text" class="form-control" id="inputName" ng-model="projectData.name" placeholder="new project" required="required">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputDescription" class="col-lg-2 control-label">Description</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputDescription" ng-model="issueData.description" placeholder="description" required="required">
+                        <input type="text" class="form-control" id="inputDescription" ng-model="projectData.description" placeholder="description" required="required">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputProject" class="col-lg-2 control-label">Project</label>
+                    <label for="inputProjectKey" class="col-lg-2 control-label">ProjectKey</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputProject" ng-model="projectData.name" placeholder="select project" required="required">
+                        <input type="text" class="form-control" id="inputProjectKey" ng-model="projectData.key" placeholder="project key" required="required">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputAssigneeId" class="col-lg-2 control-label">AssigneeId</label>
+                    <label for="inputLeadId" class="col-lg-2 control-label">ProjectKey</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputAssigneeId" ng-model="issueData.assigneeId" placeholder="select assignee id" required="required">
+                        <input type="text" class="form-control" id="inputLeadId" ng-model="projectData.leadId" placeholder="lead id" required="required">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPriorities" class="col-lg-2 control-label">Priorities</label>
+                    <label for="inputPriorities" class="col-lg-2 control-label">Priorities (separated by coma)</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputPriorities" ng-model="issueData.priorities" placeholder="select priority" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputDueDate" class="col-lg-2 control-label">DueDate</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="inputDueDate" ng-model="issueData.dueDate" placeholder="yyyy/mm/dd" required="required">
+                        <input type="text" class="form-control" id="inputPriorities" ng-model="projectData.priorities" placeholder="Low, Medium, Urgent" required="required">
                     </div>
                 </div>
 
