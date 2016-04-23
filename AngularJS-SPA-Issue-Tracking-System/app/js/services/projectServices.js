@@ -1,73 +1,74 @@
 'use strict';
 
-Advertisements.factory('adServices', function ($http, baseServiceUrl) {
-    var adService = {};
+issueTracker.factory('projectsService', function ($http, baseServiceUrl, authentication) {
+    return {
+        getAllProjects: function (success, error) {
+            var getAllProjectsRequest = {
+                method: 'GET',
+                url: baseServiceUrl + '/projects',
+                headers: authentication.getAuthHeaders()
+            };
 
-    adService.params = {};
+            $http(getAllProjectsRequest).success(success).error(error);
+        },
 
-    var adServiceUrl = baseServiceUrl + "/user/ads";
+        getAllProjectsPagination: function (params, success, error) {
+            var getAllProjectsPagingRequest = {
+                method: 'GET',
+                url: baseServiceUrl + '/projects?pageSize=' + params.pageSize + '&pageNumber=' + params.startPage + '&filter=',
+                headers: authentication.getAuthHeaders()
+            };
 
-    adService.GetUserAds = function (headers, success) {
-        $http.get(adServiceUrl,
-            {
-                params: this.params,
-                headers: headers
-            })
-            .success(function (data, status, headers, config) {
-                success(data);
-            });
-    };
+            $http(getAllProjectsPagingRequest).success(success).error(error);
+        },
 
-    adService.PublishAd = function (adData, headers, success, error) {
-        $http.post(adServiceUrl, adData, {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
+        getProjectById: function (id, success, error) {
+            if (id) {
+                var getProjectRequest = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/projects/' + id,
+                    headers: authentication.getAuthHeaders()
+                };
+                $http(getProjectRequest).success(success).error(error);
+            }
+        },
 
-    adService.DeactivateAd = function (adId, headers, success, error) {
-        $http.put(adServiceUrl + '/deactivate/' + adId, {}, {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
+        getLabels: function (success, error) {
+            var getLabelsRequest = {
+                method: 'GET',
+                url: baseServiceUrl + '/labels/?filter=',
+                headers: authentication.getAuthHeaders()
+            };
+            $http(getLabelsRequest).success(success).error(error);
+        },
 
-    adService.GetUserAdById = function (adId, headers, success) {
-        $http.get(adServiceUrl + '/' + adId,
-            {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            });
-    };
+        getProjectsByLeadId: function (id, params, success, error) {
+            if (id) {
+                var getProjectsRequest = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/projects/?filter=Lead.Id=' + '"' + id + '"' + '&pageSize=' + params.pageSize + '&pageNumber=' + params.startPage,
+                    headers: authentication.getAuthHeaders()
+                };
+                $http(getProjectsRequest).success(success).error(error);
+            }
+        },
 
-    adService.EditAd = function (currentAd, headers, success, error) {
-        $http.put(adServiceUrl + '/' + currentAd.id, currentAd, {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
 
-    adService.DeleteAd = function (adId, headers, success, error) {
-        $http.delete(adServiceUrl + '/' + adId, {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
+        isAdmin: function () {
+            var currentUser = authentication.getCurrentUser();
+            return (currentUser != undefined) && (currentUser.isAdmin);
+        },
 
-    adService.RepublishAd = function (adId, headers, success, error) {
-        $http.put(adServiceUrl + '/publishagain/' + adId, {}, {headers: headers})
-            .success(function (data, status, headers, config) {
-                success(data);
-            }).error(error);
-    };
+        editProject: function (projectData, success, error) {
+            var editProjectsRequest = {
+                method: 'PUT',
+                url: baseServiceUrl + '/projects/' + projectData.Id,
+                headers: authentication.getAuthHeaders(),
+                data: projectData
+            };
 
-    adService.clearParams = function () {
-        adService.params.status = null;
-        adService.params.startPage = 1;
-    };
+            $http(editProjectsRequest).success(success).error(error);
+        }
 
-    adService.clearParams();
-    adService.params.pageSize = 5;
-
-    return adService;
+    }
 });
