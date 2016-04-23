@@ -12,7 +12,7 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
 
     // edited Login -> Token
     $scope.login = function () {
-        authentication.Token($scope.loginData,
+        authentication.login($scope.loginData,
             function(serverData) {
                 notifyService.showInfo("Successful Login!");
                 authentication.SetCredentials(serverData);
@@ -29,7 +29,7 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
     };
 
     $scope.register = function () {
-        authentication.Register($scope.registerData,
+        authentication.register($scope.registerData,
             function(serverData) {
                 notifyService.showInfo("Successful Register!");
                 authentication.SetCredentials(serverData);
@@ -39,6 +39,16 @@ issueTracker.controller('AuthenticationController', function ($scope, $location,
             function (serverError) {
                 notifyService.showError("Unsuccessful Register!", serverError)
             });
+    };
+
+    $scope.setProjectKey = function (projectName) {
+        var tokens = projectName.split(' ');
+        var result = "";
+        tokens.forEach(function (element) {
+            result += element.substring(0, 1)
+        });
+
+        $scope.projectKey = result;
     };
 
    // $scope.editUser = function () {
