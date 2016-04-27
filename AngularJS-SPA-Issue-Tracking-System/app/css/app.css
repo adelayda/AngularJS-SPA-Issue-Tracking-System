@@ -1,14 +1,180 @@
 body {
-    padding-top: 65px;
-    hyphens: auto;
+    background-color: #f9f9f9
 }
 
-legend {
-    text-align: center;
+#password {
+    margin-bottom: 68px;
 }
 
-@media (max-width: 767px) {
-    body {
-        padding-top: 200px;
-    }
+.navbar {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    font-size: 22px;
+}
+
+.navbar .nav > li > a {
+    font-size: 14px;
+}
+
+ul.nav.navbar-nav.navbar-right > ul > li a {
+    text-transform: none;
+}
+
+#login-form legend,
+#register-form legend,
+#add-project-form legend,
+#edit-project-form legend,
+#edit-issue-form legend,
+#change-password-form legend {
+    font-weight: 600;
+    color: #3e3f3a;
+}
+
+#login-form button,
+#register-form button,
+#change-password-form button,
+#change-password-form a,
+#add-project-form button,
+#add-project-form a,
+#edit-project-form button,
+#edit-project-form a,
+#edit-issue-form button,
+#edit-issue-form a {
+    width: 49%;
+    margin-left: 0.2%;
+    font-size: 1em;
+}
+
+#add-project-form div label,
+#edit-project-form div label,
+#edit-issue-form div label,
+#change-password-form div label {
+    text-align: left;
+}
+
+div.well.bs-component {
+    background-color: #e6e6e6;
+}
+
+table > tbody > tr > td > a {
+    float: right;
+}
+
+#issuesTable > tbody > tr > td > a, #projectIssuesTable > tbody > tr > td > a {
+    float: left;
+}
+
+#issuesTable .issueTitle {
+    color: #3e3f3a;
+}
+
+#issuesTable a:hover, #projectIssuesTable a:hover {
+    text-decoration: none;
+}
+
+#projectsTable > tbody > tr > td {
+    color: #3e3f3a;
+}
+
+#projectIssuesTable .issueTitle {
+    color: #3e3f3a;
+}
+
+table > tbody > tr > td {
+    font-weight: 900;
+    font-size: 1.1em;
+}
+
+table > thead > tr > th {
+    font-size: 1.3em;
+}
+
+.btn-sm {
+    padding: 2px 30px;
+    font-size: .8em;
+}
+
+.navbar-right > ul > li:first-child > a {
+    color: #ffffff;
+}
+
+#adminArea {
+    color: #d9534f;
+    margin-left: 170px;
+    font-size: 1.7em;
+}
+
+.changeStatus {
+    float: right;
+}
+
+ul.pagination {
+    display: table;
+    margin: 15px auto;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.pagination > li > a:hover {
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > li > a {
+    background-color: #f8f5f0;
+    border-color: #ddd;
+}
+
+.ui-autocomplete, .ui-front, .ui-menu, .ui-widget, .ui-widget-content {
+    list-style: none;
+}
+
+.ui-autocomplete li, .ui-front li, .ui-menu li, .ui-widget li, .ui-widget-content li {
+    background-color: #eee;
+    padding: 1px;
+    margin-bottom: 1px;
+    width: 15%;
+}
+
+.btn.btn-primary.btn-sm {
+    margin-right: 2px;
+}
+
+#addCommentButton, #editIssueButton {
+    width: 100%;
+    font-size: 1em;
+}
+
+.halfButtons {
+    width: 49.0%;
+    font-size: 1em;
+    padding: 12px 16px;
+}
+
+.commentAuthor {
+    color: #79a736;
+}
+
+#commentTextArea {
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+#filters label{
+    display: inline-block;
+    margin-right: 2%;
+}
+
+#filters {
+    margin : auto 20%;
 }
