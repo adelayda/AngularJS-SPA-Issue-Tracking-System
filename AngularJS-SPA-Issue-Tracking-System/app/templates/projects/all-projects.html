@@ -1,0 +1,32 @@
+<div ng-if="authenticationService.isAdmin()">
+    <div class="navbar navbar-inverse">
+        <div class="navbar-brand">All Projects</div>
+    </div>
+    <pagination total-items="totalProjects" ng-model="projectParams.startPage"
+                items-per-page="projectParams.pageSize" ng-change="getProjects()"
+                max-size="9" boundary-links="true">
+    </pagination>
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>Project Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="project in projects">
+            <td ng-if="$odd" class="info">
+                {{project.Name}}
+                <a ng-if="authenticationService.isAdmin()" href="#/projects/{{project.Id}}/add-issue"
+                   class="btn btn-default btn-sm">Add Issue</a>
+                <a href="#projects/{{project.Id}}" class="btn btn-primary btn-sm">View</a>
+            </td>
+            <td ng-if="$even" class="success">
+                {{project.Name}}
+                <a ng-if="authenticationService.isAdmin()" href="#/projects/{{project.Id}}/add-issue"
+                   class="btn btn-default btn-sm">Add Issue</a>
+                <a href="#projects/{{project.Id}}" class="btn btn-primary btn-sm">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
