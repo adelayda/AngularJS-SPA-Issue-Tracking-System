@@ -1,0 +1,115 @@
+<div class="col-lg-6">
+    <table class="table table-striped" id="projectsTable">
+        <h4>Issue Page</h4>
+        <tr>
+            <th>Issue Title</th>
+            <td>{{issueData.Title}}</td>
+        </tr>
+        <tr>
+            <th>Project</th>
+            <td>{{issueData.Project.Name}}</td>
+        </tr>
+        <tr>
+            <th>Project Leader</th>
+            <td>{{issueData.projectLeaderName}}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{issueData.Description}}</td>
+        </tr>
+        <tr>
+            <th>Assignee</th>
+            <td>{{issueData.Assignee.Username}}</td>
+        </tr>
+        <tr>
+            <th>AssigneeId</th>
+            <td>{{issueData.Assignee.Id}}</td>
+        </tr>
+        <tr>
+            <th>Priority</th>
+            <td>{{issueData.Priority.Name}}</td>
+        </tr>
+        <tr>
+            <th>PriorityId</th>
+            <td>{{issueData.Priority.Id}}</td>
+        </tr>
+        <tr>
+            <th>Due Date</th>
+            <td>{{issueData.DueDate| date:'dd-MM-yyyy'}}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{issueData.Status.Name}}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{issueData.Author.Username}}</td>
+        </tr>
+        <tr>
+            <th>Labels</th>
+            <td><span ng-repeat="label in issueData.Labels">{{label.Name}}; </span></td>
+        </tr>
+    </table>
+
+    <div ng-if="issueData.projectLeaderName === authenticationService.getCurrentUser().userName||
+    authenticationService.isAdmin()"
+         class="info">
+        <a href="#issues/{{issueData.Id}}/edit" class="btn btn-default btn-sm" id="editIssueButton">Edit Issue</a>
+    </div>
+</div>
+
+<div class="col-lg-3 col-lg-offset-1"
+     ng-if="issueData.Assignee.Username === authenticationService.getCurrentUser().userName||
+     issueData.projectLeaderName === authenticationService.getCurrentUser().userName||
+     authenticationService.isAdmin()">
+    <table class="table table-striped">
+        <h4>Available statuses</h4>
+        <tr ng-repeat="status in  issueData.AvailableStatuses">
+            <td class="info">
+                {{status.Name}}
+                <button class="btn btn-primary btn-sm changeStatus"
+                        ng-click="changeStatus(issueData.Id, status.Id, status.Name)">Change
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="col-lg-3 col-lg-offset-1">
+    <h3>Comments:</h3>
+    <div ng-repeat="comment in  issueComments">
+        <p class="info">
+            <span class="commentAuthor">{{comment.Author.Username}}</span> on
+            <span class="commentDate">{{comment.CreatedOn| date:'dd-MM-yyyy'}}</span>:
+        </p>
+        <p class="info">
+            <span >{{comment.Text}}</span>
+        </p>
+    </div>
+</div>
+
+<div class="col-lg-5 col-lg-offset-1"
+     ng-if="issueData.Assignee.Username === authenticationService.getCurrentUser().userName||
+     issueData.projectLeaderName === authenticationService.getCurrentUser().userName||
+     authenticationService.isAdmin()">
+    <form class="form-horizontal" name="add-comment-form" id="add-comment-form">
+        <div class="form-group">
+            <div class="col-lg-7">
+                <p id="commentTextArea">Text:</p>
+                    <textarea class="form-control"
+                              id="issueComment"
+                              ng-model="issueComment.Text" required>
+                    </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-7">
+                <button class="btn btn-primary btn-sm"
+                        id="addCommentButton"
+                        ng-click="addComment(issueData.Id, issueComment)">Add Comment
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
