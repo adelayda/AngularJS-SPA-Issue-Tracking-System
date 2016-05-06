@@ -36,9 +36,13 @@ issueTracker.controller('AdminController', function ($scope,
     usersService.getAllUsers(
         function success(data) {
             $scope.allUsers = data;
+            $scope.allUsers = $scope.allUsers.filter(function (user) {
+                return user.isAdmin === false;
+            });
+            $scope.selectedUser = $scope.allUsers ? $scope.allUsers[0] : '';
         },
         function error(err) {
-            notifyService.showError("Project loading failed", err);
+            notifyService.showError("Users loading failed", err);
         }
     );
 
@@ -100,19 +104,21 @@ issueTracker.controller('AdminController', function ($scope,
             $scope.projectKey = result;
         }
     };
-
+    
     $scope.makeAdmin = function () {
         var data = {
-            UserId: $scope.currentUser.Id
+            UserId: $scope.selectedUser.Id
         };
 
-        usersService.makeAdmin(data)
-            .then(function () {
-                notifyService.showInfo('User ' + $scope.currentUser.name + ' is now admin!');
+        usersService.makeAdmin(
+            function success(data) {
+                notifyService.showInfo("User " + $scope.selectedUser.name + " is now admin!");
                 $route.reload();
-            }, function (error) {
-                notifyService.showError('Error making user admin', error);
-            });
+            },
+            function error(err) {
+                notifyService.showError("Error making user admin", err);
+            }
+        );
     }
 
 });

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row make-admin-content">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="well bs-component make-admin-well">
+                <form class="form-horizontal" name="makeAdminForm">
+                    <label class="control-label" for="usersSelect">Users:</label>
+                    <select name="usersSelect" class="form-control inline-input-select-make-admin" id="usersSelect"
+                            ng-options="user as user.Username for user in users"
+                            ng-model="selectedUser">
+                    </select>
+                    <button class="btn btn-success" ng-click="makeAdmin()">Make admin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
