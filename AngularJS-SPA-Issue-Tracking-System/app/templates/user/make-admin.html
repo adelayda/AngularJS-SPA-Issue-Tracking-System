@@ -1,0 +1,22 @@
+<div class="col-lg-6 ">
+    <div class="well bs-component">
+        <form class="form-horizontal" name="makeAdminForm" id="make-admin-form">
+            <legend>Make Admin</legend>
+            <div class="form-group">
+                <label for="usersSelect" class="col-lg-2 control-label">Users:</label>
+                <div class="col-lg-10">
+                    <select name="usersSelect" class="form-control inline-input-select-make-admin" id="usersSelect"
+                            ng-options="user as user.Username for user in allUsers"
+                            ng-model="selectedUser">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-8 col-lg-offset-4">
+                    <button type="submit" class="btn btn-success" ng-click="makeAdmin()">Make Admin</button>
+                    <a href="#/" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
