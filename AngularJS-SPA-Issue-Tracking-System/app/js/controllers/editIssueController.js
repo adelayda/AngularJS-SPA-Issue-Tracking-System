@@ -42,7 +42,7 @@ issueTracker.controller('EditIssueController', function ($scope,
                     });
                 },
                 function error(err) {
-                    notifyService.showError("labels loading failed", err);
+                    notifyService.showError("Labels loading failed", err);
                 });
         };
 

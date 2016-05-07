@@ -107,10 +107,10 @@ issueTracker.controller('AdminController', function ($scope,
     
     $scope.makeAdmin = function () {
         var data = {
-            UserId: $scope.selectedUser.Id
+            UserId: $scope.selectedUser.id
         };
 
-        usersService.makeAdmin(
+        adminService.makeAdmin(
             function success(data) {
                 notifyService.showInfo("User " + $scope.selectedUser.name + " is now admin!");
                 $route.reload();
