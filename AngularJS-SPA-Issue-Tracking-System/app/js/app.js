@@ -11,46 +11,42 @@ var issueTracker = angular.module('IssueTrackingSystem', [
         $routeProvider.when('/', {
             templateUrl: 'templates/user/dashboard.html',
             controller: 'AuthenticationController'
-        });
-
-        $routeProvider.when('/user/profile/password', {
+        })
+        .when('/user/profile/password', {
             templateUrl: 'templates/user/edit-password.html',
             controller: 'UserEditProfileController'
-        });
-
-        $routeProvider.when('/projects', {
+        })
+        .when('/projects', {
             templateUrl: 'templates/projects/all-projects.html',
             controller: 'AdminController'
-        });
-
-        $routeProvider.when('/projects/add', {
+        })
+        .when('/projects/add', {
             templateUrl: 'templates/projects/add-new-project.html',
             controller: 'AdminController'
-        });
-
-        $routeProvider.when('/projects/:id', {
+        })
+        .when('/projects/:id', {
             templateUrl: 'templates/projects/project-page.html',
             controller: 'ViewProjectController'
-        });
-
-        $routeProvider.when('/projects/:id/add-issue', {
+        })
+        .when('/projects/:id/add-issue', {
             templateUrl: 'templates/issues/add-new-issue.html',
             controller: 'ProjectsController'
-        });
-
-        $routeProvider.when('/projects/:id/edit', {
+        })
+        .when('/projects/:id/edit', {
             templateUrl: 'templates/projects/edit-project.html',
             controller: 'EditProjectController'
-        });
-
-        $routeProvider.when('/issues/:id', {
+        })
+        .when('/issues/:id', {
             templateUrl: 'templates/issues/issue-page.html',
             controller: 'IssuesController'
-        });
-
-        $routeProvider.when('/issues/:id/edit', {
+        })
+        .when('/issues/:id/edit', {
             templateUrl: 'templates/issues/edit-issue.html',
             controller: 'EditIssueController'
+        })
+        .when('/make-admin', {
+            templateUrl: 'templates/user/make-admin.html',
+            controller: 'AdminController'
         });
 
         $routeProvider.otherwise(
