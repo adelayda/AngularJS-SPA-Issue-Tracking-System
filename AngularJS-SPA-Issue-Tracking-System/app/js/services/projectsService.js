@@ -53,7 +53,6 @@ issueTracker.factory('projectsService', function ($http, baseServiceUrl, authent
             }
         },
 
-
         isAdmin: function () {
             var currentUser = authenticationService.getCurrentUser();
             return (currentUser != undefined) && (currentUser.isAdmin);
